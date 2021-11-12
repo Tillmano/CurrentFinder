@@ -49,7 +49,7 @@ public class InputBattery extends JDialog implements ActionListener {
             JOptionPane.showMessageDialog(null,
                     "Error: You must enter an integer for the Nodes and ID and a Double for the voltage");
 
-            dispose();
         }
-    }
+        dispose();
+     }
 }

@@ -19,7 +19,7 @@ public class Solver {
             if (!g.containsVertex(component.GetSourceNode(component))) {
                 g.addVertex(component.GetSourceNode(component));
             }
-            g.addEdge(component.GetSourceNode(component), component.GetDestNode(component));
+            g.addEdge(component.GetSourceNode(component), component.GetDestNode(component), component);
             System.out.println(g.toString());
         }
         PatonCycleBase cycleBase = new PatonCycleBase(g);
