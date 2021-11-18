@@ -3,6 +3,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.jgrapht.*;
+import org.jgrapht.alg.connectivity.ConnectivityInspector;
 import org.jgrapht.alg.interfaces.CycleBasisAlgorithm;
 import org.jgrapht.graph.*;
 import org.jgrapht.alg.cycle.*;
@@ -20,12 +21,16 @@ public class Solver {
                 g.addVertex(component.GetSourceNode(component));
             }
             g.addEdge(component.GetSourceNode(component), component.GetDestNode(component), component);
-            System.out.println(g.toString());
         }
         PatonCycleBase cycleBase = new PatonCycleBase(g);
         CycleBasisAlgorithm.CycleBasis<Integer, Object> cycleBasis = cycleBase.getCycleBasis();
         Set<List<Object>> cycles = cycleBasis.getCycles();
         System.out.println(cycles);
+
+        ConnectivityInspector connectivityInspector = new ConnectivityInspector(g);
+
+        List<Set<Integer>> connected = connectivityInspector.connectedSets();
+        System.out.println(connected.toString());
     }
 
 }
