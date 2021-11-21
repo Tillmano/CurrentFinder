@@ -11,7 +11,7 @@ import org.jgrapht.alg.cycle.*;
 public class Solver {
 
     static void solve(ArrayList<Component> components) {
-        Graph<Integer, Object> g = new DefaultUndirectedGraph<>(DefaultEdge.class);
+        Graph<Integer, Object> g = new DefaultDirectedGraph<>(DefaultEdge.class);
         for (int i = 0; i < components.size(); i++) {
             Component component = components.get(i);
             if (!g.containsVertex(component.GetDestNode(component))) {
@@ -21,16 +21,14 @@ public class Solver {
                 g.addVertex(component.GetSourceNode(component));
             }
             g.addEdge(component.GetSourceNode(component), component.GetDestNode(component), component);
+            g.addEdge(component.GetDestNode(component),component.GetSourceNode(component), component);
         }
-        PatonCycleBase cycleBase = new PatonCycleBase(g);
+        QueueBFSFundamentalCycleBasis cycleBase = new QueueBFSFundamentalCycleBasis(g);
         CycleBasisAlgorithm.CycleBasis<Integer, Object> cycleBasis = cycleBase.getCycleBasis();
-        Set<List<Object>> cycles = cycleBasis.getCycles();
+        Set<GraphPath<Integer, Object>> cycles = cycleBasis.getCyclesAsGraphPaths();
         System.out.println(cycles);
 
-        ConnectivityInspector connectivityInspector = new ConnectivityInspector(g);
 
-        List<Set<Integer>> connected = connectivityInspector.connectedSets();
-        System.out.println(connected.toString());
     }
 
 }
