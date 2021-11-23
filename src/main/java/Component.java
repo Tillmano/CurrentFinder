@@ -10,12 +10,13 @@ abstract public class Component {
         this.ID = ID;
         this.current = current;
     }
-    public int GetSourceNode(Component component){
-        int sourceNode = component.sourceNode;
+    public int GetSourceNode(){
         return sourceNode;
     }
-    public int GetDestNode(Component component){
-        int destNode = component.destNode;
+    public int GetDestNode(){
         return destNode;
+    }
+    public int GetID(){
+        return ID;
     }
 }
