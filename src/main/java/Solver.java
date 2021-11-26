@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
@@ -34,11 +35,14 @@ public class Solver {
         System.out.println(columns);
 
         double twoD[][] = new double[rows][columns];
+        double answers[] = new double[rows];
+        int row = 0;
 
         for(int i = 0; i < vertexSet.size(); i++){
             Set<Component> edges = g.edgesOf(i + 1);
+            answers[row] = 0;
+            row++;
             for(Component component : edges) {
-
                 if (component.GetSourceNode() == i + 1) {
                     twoD[i][component.GetID() - 1] = -1;
                 } else {
@@ -47,6 +51,25 @@ public class Solver {
             }
 
         }
+
+            for (GraphPath graphPath : cycles) {
+                List edges = graphPath.getEdgeList();
+                for (Object component : edges){
+                    Resistor rcomp;
+                    try {
+                        rcomp = (Resistor) component;
+                        twoD[row][rcomp.GetID()] = rcomp.GetResistance();
+                    }   catch (ClassCastException classCastException) {
+                        Battery vcomp = (Battery) component;
+                        answers[row] = vcomp.GetVoltage();
+                    }
+                }
+                row++;
+            }
+            MatrixSolver matrixSolver = new MatrixSolver();
+            double[] solutions = matrixSolver.Solve(twoD, answers);
+            System.out.println(solutions);
+
         System.out.print("\nData you entered : \n");
         for (double[] x : twoD) {
             for (double y : x) {

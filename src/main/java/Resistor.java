@@ -5,6 +5,9 @@ public class Resistor extends Component {
         super(sourceNode, destNode, ID, current);
         this.resistance = resistance;
     }
+    public double GetResistance() {
+        return resistance;
+    }
 
     @Override
     public String toString() {

@@ -3,6 +3,7 @@ import java.net.URI;
 abstract public class Component {
     int sourceNode, destNode, ID;
     double current;
+
     //Constructs a component, it can not be instantiated because it is abstract.
     public Component(int sourceNode, int destNode, int ID, double current) {
         this.sourceNode = sourceNode;
@@ -10,13 +11,16 @@ abstract public class Component {
         this.ID = ID;
         this.current = current;
     }
-    public int GetSourceNode(){
+
+    public int GetSourceNode() {
         return sourceNode;
     }
-    public int GetDestNode(){
+
+    public int GetDestNode() {
         return destNode;
     }
-    public int GetID(){
+
+    public int GetID() {
         return ID;
     }
 }

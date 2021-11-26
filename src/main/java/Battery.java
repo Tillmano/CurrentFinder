@@ -6,6 +6,10 @@ public class Battery extends Component {
         this.voltage = voltage;
     }
 
+    public double GetVoltage() {
+        return voltage;
+    }
+
     @Override
     public String toString() {
         return "Battery{" +
