@@ -4,7 +4,7 @@ public class MatrixSolver {
     public double[] Solve(double twoD[][], double answers[]) {
         RealMatrix coefficients =
                 new Array2DRowRealMatrix(twoD);
-        DecompositionSolver solver = new LUDecomposition(coefficients).getSolver();
+        DecompositionSolver solver = new QRDecomposition(coefficients).getSolver();
         RealVector constants = new ArrayRealVector(answers);
         RealVector solution = solver.solve(constants);
         return solution.toArray();
