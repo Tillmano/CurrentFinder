@@ -1,10 +1,5 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Set;
-
+import java.util.*;
 import org.jgrapht.*;
-import org.jgrapht.alg.connectivity.ConnectivityInspector;
 import org.jgrapht.alg.interfaces.CycleBasisAlgorithm;
 import org.jgrapht.graph.*;
 import org.jgrapht.alg.cycle.*;
@@ -13,8 +8,7 @@ public class Solver {
 
     static void solve(ArrayList<Component> components) {
         Graph<Integer, Component> g = new DefaultDirectedGraph<>(Component.class);
-        for (int i = 0; i < components.size(); i++) {
-            Component component = components.get(i);
+        for (Component component : components) {
             if (!g.containsVertex(component.GetDestNode())) {
                 g.addVertex(component.GetDestNode());
             }
@@ -31,8 +25,7 @@ public class Solver {
 
         Set<Integer> vertexSet = g.vertexSet();
         int rows = cycles.size() + vertexSet.size();
-        int columns = rows;
-        System.out.println(columns);
+        System.out.println(rows);
 
         double twoD[][] = new double[rows][components.size()];
         double answers[] = new double[rows];
@@ -98,12 +91,16 @@ public class Solver {
 
         MatrixSolver matrixSolver = new MatrixSolver();
         double[] solutions = matrixSolver.Solve(twoD, answers);
-        int h;
-        h = solutions.length;
         System.out.println("Array elements are: ");
-        for (int i = 0; i < h; i++) {
+        for (int i = 0; i < solutions.length; i++) {
             System.out.println(solutions[i]);
-            //components.setCurrent(solutions)  ;
+
+            for (Component component : components) {
+                int ID = component.GetID();
+                if (ID == i + 1){
+                    component.setCurrent(solutions[i]);
+                }
+            }
         }
         
     }

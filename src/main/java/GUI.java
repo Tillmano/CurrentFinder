@@ -22,7 +22,7 @@ public class GUI extends JDialog implements ActionListener {
         list = new JList(components);
         list.setVisibleRowCount(3);
         add(new JScrollPane(list));
-        list.setFont(list.getFont().deriveFont(30.0f));
+        list.setFont(list.getFont().deriveFont(15.0f));
         add(list);
         rButton = new JButton("Add resistor");
         add(rButton);
@@ -77,6 +77,7 @@ public class GUI extends JDialog implements ActionListener {
                 c.add(e.nextElement());
             }
             Solver.solve(c);
+            list.updateUI();
         }
     }
     //adds the new component to the list of components

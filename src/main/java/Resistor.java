@@ -11,11 +11,12 @@ public class Resistor extends Component {
 
     @Override
     public String toString() {
+        double roundCurrent = Math.round(current*100.0)/100.0;
         return "Resistor{" +
                 "sourceNode=" + sourceNode +
                 ", destNode=" + destNode +
                 ", resistance=" + resistance +
-                ", current through=" + current +
+                ", current through=" + roundCurrent +
                 ", ID='" + ID + '\'' +
                 '}';
     }

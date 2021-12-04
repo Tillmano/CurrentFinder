@@ -12,11 +12,12 @@ public class Battery extends Component {
 
     @Override
     public String toString() {
+        double roundCurrent = Math.round(current*100.0)/100.0;
         return "Battery{" +
                 "sourceNode=" + sourceNode +
                 ", destNode=" + destNode +
                 ", voltage=" + voltage +
-                ", current through=" + current +
+                ", current through=" + roundCurrent +
                 ", ID='" + ID + '\'' +
                 '}';
     }

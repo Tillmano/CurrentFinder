@@ -24,7 +24,7 @@ abstract public class Component {
         return ID;
     }
 
-    public void setCurrent(Double[] solutions){
-        current = solutions[ID];
+    public void setCurrent(double current){
+        this.current = current;
     }
 }
