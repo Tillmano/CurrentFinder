@@ -103,9 +103,9 @@ public class Solver {
         System.out.println("Array elements are: ");
         for (int i = 0; i < h; i++) {
             System.out.println(solutions[i]);
+            //components.setCurrent(solutions)  ;
         }
-
-
+        
     }
 
 }

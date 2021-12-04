@@ -23,4 +23,8 @@ abstract public class Component {
     public int GetID() {
         return ID;
     }
+
+    public void setCurrent(Double[] solutions){
+        current = solutions[ID];
+    }
 }
