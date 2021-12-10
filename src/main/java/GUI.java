@@ -7,7 +7,7 @@ import javax.swing.*;
 public class GUI extends JDialog implements ActionListener {
     private JList list;
     private JLabel label;
-    private JButton rButton, vButton, sButton;
+    private JButton rButton, vButton, sButton, gButton;
     private DefaultListModel components;
 
 
@@ -33,6 +33,9 @@ public class GUI extends JDialog implements ActionListener {
         sButton = new JButton("Solve");
         add(sButton);
         sButton.addActionListener(this);
+        gButton = new JButton("Show Guide");
+        add(gButton);
+        gButton.addActionListener(this);
 
         //lays out GUI
         JScrollPane listScroller = new JScrollPane(list);
@@ -53,6 +56,8 @@ public class GUI extends JDialog implements ActionListener {
         buttonPane.add(vButton);
         buttonPane.add(Box.createRigidArea(new Dimension(10, 0)));
         buttonPane.add(sButton);
+        buttonPane.add(Box.createRigidArea(new Dimension(10, 0)));
+        buttonPane.add(gButton);
         Container contentPane = getContentPane();
         contentPane.add(listPane, BorderLayout.CENTER);
         contentPane.add(buttonPane, BorderLayout.PAGE_END);
@@ -78,7 +83,15 @@ public class GUI extends JDialog implements ActionListener {
             }
             Solver.solve(c);
             list.updateUI();
+        }else if(event.getSource() == gButton) {
+            JFrame frame = new JFrame("Guide");
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            new DisplayGuide(frame);
+            frame.setSize(560, 450);
+            frame.setLocationRelativeTo(null);
+            frame.setVisible(true);
         }
+
     }
     //adds the new component to the list of components
     public void addComponent(Component component){
