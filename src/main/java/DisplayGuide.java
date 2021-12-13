@@ -9,14 +9,15 @@ import javax.swing.*;
 
 public class DisplayGuide extends JDialog {
     public DisplayGuide(final JFrame frame){
+        //Panel and frame to display the guide are initialised.
         JPanel panel = new JPanel();
         LayoutManager layout = new FlowLayout();
         panel.setLayout(layout);
-
         JEditorPane jEditorPane = new JEditorPane();
         jEditorPane.setEditable(false);
         URL url= DisplayGuide.class.getResource("guide.html");
 
+        //The program tries to find the correct html file to display.
         try {
             jEditorPane.setPage(url);
         } catch (IOException e) {
@@ -24,6 +25,7 @@ public class DisplayGuide extends JDialog {
             jEditorPane.setText("<html>Page not found.</html>");
         }
 
+        //A scroll pane with the html is made and displayed in the panel.
         JScrollPane jScrollPane = new JScrollPane(jEditorPane);
         jScrollPane.setPreferredSize(new Dimension(540,400));
 

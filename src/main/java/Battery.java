@@ -11,6 +11,7 @@ public class Battery extends Component {
     }
 
     @Override
+    //Displays the details od the component in an easily readable form.
     public String toString() {
         double roundCurrent = Math.round(current*100.0)/100.0;
         return "Battery (" +
