@@ -1,23 +1,18 @@
 import java.util.*;
+
 import org.jgrapht.*;
 import org.jgrapht.alg.interfaces.CycleBasisAlgorithm;
 import org.jgrapht.graph.*;
 import org.jgrapht.alg.cycle.*;
+import org.jgrapht.graph.builder.GraphBuilder;
 
 public class Solver {
 
     static void solve(ArrayList<Component> components) {
-        Graph<Integer, Component> g = new DefaultDirectedGraph<>(Component.class);
-        for (Component component : components) {
-            if (!g.containsVertex(component.GetDestNode())) {
-                g.addVertex(component.GetDestNode());
-            }
-            if (!g.containsVertex(component.GetSourceNode())) {
-                g.addVertex(component.GetSourceNode());
-            }
-            g.addEdge(component.GetSourceNode(), component.GetDestNode(), component);
-            g.addEdge(component.GetDestNode(), component.GetSourceNode(), component);
-        }
+
+        Graph g = BuildGraph(components);
+
+
         QueueBFSFundamentalCycleBasis cycleBase = new QueueBFSFundamentalCycleBasis(g);
         CycleBasisAlgorithm.CycleBasis<Integer, Component> cycleBasis = cycleBase.getCycleBasis();
         Set<GraphPath<Integer, Component>> cycles = cycleBasis.getCyclesAsGraphPaths();
@@ -31,7 +26,8 @@ public class Solver {
         double answers[] = new double[rows];
         int row = 0;
 
-        for (int i = 0; i < vertexSet.size(); i++) {
+        for (
+                int i = 0; i < vertexSet.size(); i++) {
             Set<Component> edges = g.edgesOf(i + 1);
             answers[row] = 0;
             row++;
@@ -45,7 +41,8 @@ public class Solver {
 
         }
 
-        for (GraphPath graphPath : cycles) {
+        for (
+                GraphPath graphPath : cycles) {
             List edges = graphPath.getEdgeList();
             Resistor lastResistor = null;
             boolean flip;
@@ -76,36 +73,36 @@ public class Solver {
             row++;
         }
 
-
-        System.out.print("\nData you entered : \n");
-        for (double[] x : twoD) {
-            for (double y : x) {
-                System.out.print(y + "        ");
-            }
-            System.out.println();
-        }
-        System.out.println("Answers are: ");
-        for (int i = 0; i < rows; i++) {
-            System.out.println(answers[i]);
-        }
-
         MatrixSolver matrixSolver = new MatrixSolver();
         double[] solutions = matrixSolver.Solve(twoD, answers);
-        System.out.println("Array elements are: ");
         for (int i = 0; i < solutions.length; i++) {
-            System.out.println(solutions[i]);
-
             for (Component component : components) {
                 int ID = component.GetID();
-                if (ID == i + 1){
+                if (ID == i + 1) {
                     component.setCurrent(solutions[i]);
                 }
             }
         }
-        
+
     }
 
+    private static Graph BuildGraph(ArrayList<Component> components) {
+        Graph<Integer, Component> g = new DefaultDirectedGraph<>(Component.class);
+        for (Component component : components) {
+            if (!g.containsVertex(component.GetDestNode())) {
+                g.addVertex(component.GetDestNode());
+            }
+            if (!g.containsVertex(component.GetSourceNode())) {
+                g.addVertex(component.GetSourceNode());
+            }
+            g.addEdge(component.GetSourceNode(), component.GetDestNode(), component);
+            g.addEdge(component.GetDestNode(), component.GetSourceNode(), component);
+        }
+        return g;
+    }
+    private static Double[][] Double[] ()
 }
+
 
 
 

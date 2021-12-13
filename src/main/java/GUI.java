@@ -39,7 +39,7 @@ public class GUI extends JDialog implements ActionListener {
 
         //lays out GUI
         JScrollPane listScroller = new JScrollPane(list);
-        listScroller.setPreferredSize(new Dimension(250, 80));
+        listScroller.setPreferredSize(new Dimension(350, 80));
         listScroller.setAlignmentX(LEFT_ALIGNMENT);
         JPanel listPane = new JPanel();
         listPane.setLayout(new BoxLayout(listPane, BoxLayout.PAGE_AXIS));
@@ -85,7 +85,6 @@ public class GUI extends JDialog implements ActionListener {
             list.updateUI();
         }else if(event.getSource() == gButton) {
             JFrame frame = new JFrame("Guide");
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             new DisplayGuide(frame);
             frame.setSize(560, 450);
             frame.setLocationRelativeTo(null);
@@ -103,7 +102,7 @@ public class GUI extends JDialog implements ActionListener {
         GUI gui = new GUI();
         gui.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
         gui.setVisible(true);
-        gui.setSize(500, 500);
+        gui.setSize(800, 500);
         gui.setTitle("GUI");
     }
 }
