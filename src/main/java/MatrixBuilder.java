@@ -2,9 +2,11 @@ import java.util.*;
 
 import org.jgrapht.*;
 
+import javax.swing.*;
+
 public class MatrixBuilder {
-    double[][] twoD;
-    double[] answers;
+    private static double[][] twoD;
+    private static double[] answers;
     public MatrixBuilder(Graph g, Set<GraphPath<Integer, Component>> cycles, ArrayList<Component> components) {
 
         //The amount of rows in the matrix is determined by the number of equations that will be formed.
@@ -22,7 +24,15 @@ public class MatrixBuilder {
         //This is using Kirchoff's current law.
         for (
                 int i = 0; i < vertexSet.size(); i++) {
-            Set<Component> edges = g.edgesOf(i + 1);
+            Set<Component> edges = null;
+            //Checks that the user has inputted a proper circuit.
+            try {
+                edges = g.edgesOf(i + 1);
+            } catch(IllegalArgumentException e) {
+                JOptionPane.showMessageDialog(null,
+                "Error: Please enter a proper circuit with 2 or more components between different nodes." +
+                        " See the guide for examples.");
+            }
             answers[row] = 0;
             row++;
             for (Component component : edges) {
