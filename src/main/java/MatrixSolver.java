@@ -1,5 +1,4 @@
 import org.apache.commons.math3.linear.*;
-
 import javax.swing.*;
 
 public class MatrixSolver {

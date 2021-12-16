@@ -1,12 +1,10 @@
 import java.util.*;
-
 import org.jgrapht.*;
 import org.jgrapht.alg.interfaces.CycleBasisAlgorithm;
 import org.jgrapht.graph.*;
 import org.jgrapht.alg.cycle.*;
 
 public class Solver {
-
     static void solve(ArrayList<Component> components) {
         //The list of components is turned into a graph and cycles are found.
         Graph g = BuildGraph(components);

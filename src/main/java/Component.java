@@ -1,5 +1,3 @@
-import java.net.URI;
-
 abstract public class Component {
     int sourceNode, destNode, ID;
     double current;

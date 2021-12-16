@@ -1,7 +1,5 @@
 import java.util.*;
-
 import org.jgrapht.*;
-
 import javax.swing.*;
 
 public class MatrixBuilder {
