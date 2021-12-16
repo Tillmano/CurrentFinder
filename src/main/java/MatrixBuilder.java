@@ -47,8 +47,7 @@ public class MatrixBuilder {
         }
 
         //For each cycle in the set of cycles the program forms an equation.
-        for (
-                GraphPath graphPath : cycles) {
+        for (GraphPath graphPath : cycles) {
             List edges = graphPath.getEdgeList();
             Resistor lastResistor = null;
             boolean flip;

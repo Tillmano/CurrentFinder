@@ -17,12 +17,12 @@ public class DisplayGuide extends JDialog {
         jEditorPane.setEditable(false);
         URL url= DisplayGuide.class.getResource("guide.html");
 
-        //The program tries to find the correct html file to display.
+        //The program tries to set the url of the file as that of the page.
         try {
             jEditorPane.setPage(url);
         } catch (IOException e) {
             jEditorPane.setContentType("text/html");
-            jEditorPane.setText("<html>Page not found.</html>");
+            jEditorPane.setText("Page not found.");
         }
 
         //A scroll pane with the html is made and displayed in the panel.

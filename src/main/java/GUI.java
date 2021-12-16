@@ -77,6 +77,7 @@ public class GUI extends JDialog implements ActionListener {
             input.setSize(200, 400);
             input.setTitle("Input");
         }else if(event.getSource() == sButton){
+            //A list of the inputted components is passed to the solver.
             ArrayList<Component> c = new ArrayList<>();
             for (Enumeration<Component> e = components.elements(); e.hasMoreElements();) {
                 c.add(e.nextElement());
